@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "41281885924",
+    "firebase_url": "https://vibeus-bf5e5-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "vibeus-bf5e5",
+    "storage_bucket": "vibeus-bf5e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41281885924:android:5c13b3f5817f51d77efef1",
+        "android_client_info": {
+          "package_name": "com.example.chatapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5B4KLIEiUOT9QACe_Gcd5l-da3echcvk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41281885924:android:13a17b233da8ace97efef1",
+        "android_client_info": {
+          "package_name": "com.example.chattingapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5B4KLIEiUOT9QACe_Gcd5l-da3echcvk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
