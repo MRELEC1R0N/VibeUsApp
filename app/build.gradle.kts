@@ -93,4 +93,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-maps:18.1.0")
 
     implementation("androidx.compose.runtime:runtime-livedata:1.7.1")
+
+    implementation ("androidx.datastore:datastore-preferences:1.0.0")
+
 }

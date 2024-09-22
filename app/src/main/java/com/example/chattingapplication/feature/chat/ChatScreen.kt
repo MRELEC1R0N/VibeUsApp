@@ -46,9 +46,9 @@ fun ChatScreen(
 
     LazyColumn(
         state = lazyListState,
-        modifier = Modifier.fillMaxSize().padding(8.dp), // Add padding for better visibility
-        verticalArrangement = Arrangement.Bottom, // Align items to the bottom
-        reverseLayout = true // This will reverse the order of items
+        modifier = Modifier.fillMaxSize().padding(8.dp),
+        verticalArrangement = Arrangement.Bottom,
+        reverseLayout = true
     ) {
         items(messages.reversed()) { message ->
             ChatBubble(message = message, isCurrentUser = message.senderId == currentUserId)

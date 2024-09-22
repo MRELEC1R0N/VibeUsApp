@@ -1,13 +1,15 @@
 package com.example.chattingapplication.feature.Singup
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.auth.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.example.chattingapplication.UserSignup as User
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor() : ViewModel() {
@@ -15,7 +17,7 @@ class SignUpViewModel @Inject constructor() : ViewModel() {
     private val _state = MutableStateFlow<SignUpState>(SignUpState.Nothing)
     val state = _state.asStateFlow()
 
-    fun signUp(name:String, email: String, password: String) {
+    fun signUp(username: String, email: String, password: String) {
         _state.value = SignUpState.Loading
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -23,7 +25,7 @@ class SignUpViewModel @Inject constructor() : ViewModel() {
                     task.result.user?.let { firebaseUser ->
                         val user = User(
                             userId = firebaseUser.uid,
-                            username = name,
+                            username = username,
                             email = email
                         )
                         val db = FirebaseFirestore.getInstance()
@@ -31,24 +33,25 @@ class SignUpViewModel @Inject constructor() : ViewModel() {
                             .addOnSuccessListener {
                                 firebaseUser.updateProfile(
                                     com.google.firebase.auth.UserProfileChangeRequest.Builder()
-                                        .setDisplayName(name)
+                                        .setDisplayName(username)
                                         .build()
                                 )
                                 _state.value = SignUpState.Success
                             }
-                            .addOnFailureListener {
-                                _state.value = SignUpState.Error
+                            .addOnFailureListener { exception ->
+                                _state.value = SignUpState.Error(exception.message ?: "Failed to save user data.")
                             }
                     }
                 } else {
-                    _state.value = SignUpState.Error
+                    _state.value = SignUpState.Error(task.exception?.message ?: "Sign up failed.")
                 }
             }
     }
 }
+
 sealed class SignUpState {
     object Nothing : SignUpState()
     object Loading : SignUpState()
     object Success : SignUpState()
-    object Error : SignUpState()
+    data class Error(val message: String) : SignUpState()
 }
