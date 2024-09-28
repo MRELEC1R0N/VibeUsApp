@@ -67,7 +67,7 @@ fun SignupScreen(navController: NavController) {
     LaunchedEffect(key1 = uiState.value) {
         when (uiState.value) {
             is SignUpState.Success -> {
-                navController.navigate(NavigationRouts.BasicInfoScreen.passUserInfo(username, email))
+                navController.navigate(NavigationRouts.MapScreen.route)
             }
 
             is SignUpState.Error -> {

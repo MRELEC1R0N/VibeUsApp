@@ -21,7 +21,8 @@ class UserViewModel : ViewModel() {
                         _user.value = User(
                             userId = document.id,
                             username = document.getString("username") ?: "",
-                            email = document.getString("email") ?: ""
+                            email = document.getString("email") ?: "",
+                            profileImageUrl = document.getString("profileImageUrl") ?: ""
                         )
                     } catch (e: Exception) {
                         // Handle error parsing user data
@@ -35,6 +36,6 @@ class UserViewModel : ViewModel() {
             .addOnFailureListener { exception ->
                 // Handle error fetching user data
                 _user.value = null
-            }
+               }
     }
 }

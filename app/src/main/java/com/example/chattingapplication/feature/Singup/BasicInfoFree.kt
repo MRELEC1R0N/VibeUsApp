@@ -51,12 +51,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.chattingapplication.R
-import com.example.chattingapplication.UserSignup
 import com.example.chattingapplication.feature.ReusableCardLayout
 import com.example.chattingapplication.feature.navigation.NavigationRouts
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.example.chattingapplication.UserSignup as User
+import com.example.chattingapplication.User as User
 
 
 @Composable
@@ -81,7 +80,7 @@ fun BasicInfoScreen(navController: NavController, username: String?, email: Stri
         ) {
             // Top image from Figma
             Image(
-                painter = painterResource(id = R.drawable.user_info), // Update with your image resource
+                painter = painterResource(id = R.drawable.singupcouple), // Update with your image resource
                 contentDescription = "User Info Image",
                 modifier = Modifier
                     .fillMaxWidth()

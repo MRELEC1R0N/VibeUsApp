@@ -1,5 +1,6 @@
 package com.example.chattingapplication.feature.map
 
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -10,10 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ModalBottomSheetLayout
-import androidx.compose.material.ModalBottomSheetValue
-import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Scaffold
@@ -22,7 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -98,7 +94,8 @@ fun MapScreen(navController: NavHostController) {
                 Card(
                     modifier = Modifier
                         .size(56.dp)
-                        .align(Alignment.Center).clickable {
+                        .align(Alignment.Center)
+                        .clickable {
                             showUserList = true
                             val db = FirebaseFirestore.getInstance()
                             db.collection("users")
@@ -106,10 +103,12 @@ fun MapScreen(navController: NavHostController) {
                                 .addOnSuccessListener { result ->
                                     users = result.documents.mapNotNull { document ->
                                         try {
-                                           User(
+                                            User(
                                                 userId = document.id,
                                                 username = document.getString("username") ?: "",
-                                                email = document.getString("email") ?: ""
+                                                email = document.getString("email") ?: "",
+                                                age = (document.getLong("age")?.toInt() ?: 0).toString(),
+                                                profileImageUrl = document.getString("profileImageUrl") ?: ""
                                             )
                                         } catch (e: Exception) {
                                             errorMessage = "Error parsing user data"
@@ -123,7 +122,8 @@ fun MapScreen(navController: NavHostController) {
                         },
                     shape = RoundedCornerShape(4.dp),
                     elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-                ) {
+                )
+                {
                     Box(modifier = Modifier.fillMaxSize()) {
                         Text(
                             text = "+",
@@ -137,4 +137,3 @@ fun MapScreen(navController: NavHostController) {
         }
     }
 }
-

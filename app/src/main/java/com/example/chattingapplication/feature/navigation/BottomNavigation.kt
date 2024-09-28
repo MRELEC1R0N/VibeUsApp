@@ -31,9 +31,9 @@ fun MyBottomNavigation(navController: NavController) {
     val items = listOf(
         NavigationItem(label = "Profile", icon = R.drawable.profile_icon, route = Screen.HomeScreen.route),
         NavigationItem(label = "Map", icon = R.drawable.map_icon, route = Screen.MapScreen.route),
-        NavigationItem(label = "Chat", icon = R.drawable.chat_icon, route = Screen.ChatScreen.route)
+        NavigationItem(label = "Chat", icon = R.drawable.chat_icon, route = Screen.ChatScreen.route),
+        NavigationItem(label = "Requests", icon = R.drawable.person_profile, route = Screen.FriendRequestsScreen.route) // New item added
     )
-
 
     Surface(
         modifier = Modifier
@@ -43,7 +43,6 @@ fun MyBottomNavigation(navController: NavController) {
             .clip(bottomBarShape),
         color = Color.White
     ) {
-
         BottomNavigation { // This now refers to the Material library component
             items.forEach { item ->
                 BottomNavigationItem(
@@ -55,9 +54,17 @@ fun MyBottomNavigation(navController: NavController) {
                     },
                     label = { Text(text = item.label) },
                     selected = navController.currentDestination?.route == item.route,
-                    onClick = { navController.navigate(item.route) }
+                    onClick = {
+                        navController.navigate(item.route) {
+                            // Optional: Clear the back stack or customize navigation behavior
+                            popUpTo(navController.graph.startDestinationId) { saveState = true }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+                    }
                 )
             }
         }
     }
 }
+

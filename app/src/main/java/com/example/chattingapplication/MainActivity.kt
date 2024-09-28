@@ -6,7 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.chattingapplication.feature.navigation.NavigationRouts as Screen
-import com.example.chattingapplication.ui.theme.ChattingApplicationTheme
+import com.example.compose.ChattingApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 

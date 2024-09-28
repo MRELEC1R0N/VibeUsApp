@@ -14,13 +14,18 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.chattingapplication.feature.ProfilePage.HomeScreen
 import com.example.chattingapplication.feature.Login.LoginScreen
+import com.example.chattingapplication.feature.ProfilePage.PostUserProfile
+import com.example.chattingapplication.feature.ProfilePage.RequestUserProfile
 import com.example.chattingapplication.feature.ProfilePage.UserInfoScreen
 import com.example.chattingapplication.feature.Singup.AboutMeScreen
 import com.example.chattingapplication.feature.Singup.BasicInfoScreen
 import com.example.chattingapplication.feature.Singup.SignupScreen
 import com.example.chattingapplication.feature.chat.MessageScreen
 import com.example.chattingapplication.feature.chat.usersList
+import com.example.chattingapplication.feature.friendRequets.FriendRequestsScreen
 import com.example.chattingapplication.feature.map.MapScreen
+import com.example.chattingapplication.feature.navigation.NavigationRouts
+import com.google.firebase.auth.FirebaseAuth
 import com.example.chattingapplication.feature.navigation.NavigationRouts as Screen
 
 
@@ -39,6 +44,40 @@ fun MainApp() {
             composable(Screen.MapScreen.route) { MapScreen(navController) }
             composable(Screen.ChatScreen.route) { usersList(navController) }
             composable(Screen.AboutMeScreen.route) { AboutMeScreen(navController)}
+            composable(Screen.FriendRequestsScreen.route) {
+                FriendRequestsScreen(navController) // Your new FriendRequests screen
+            }
+
+            composable(
+                Screen.RequestUserProfile.route,
+                arguments = listOf(navArgument("userId") { type = NavType.StringType })
+            ) { backStackEntry ->
+                val userId = backStackEntry.arguments?.getString("userId") ?: ""
+                RequestUserProfile(
+                    userId = userId,
+                    navController = navController,
+                    onBackClick = { navController.popBackStack() }
+                )
+            }
+
+
+
+
+            composable(
+                route = NavigationRouts.PostUserScreen.route,
+                arguments = listOf(navArgument("userId") {
+                    type = NavType.StringType
+                })
+            ) { backStackEntry ->
+                val userId = backStackEntry.arguments?.getString("userId")
+                if (userId != null) {
+                    PostUserProfile(
+                        userId = userId,
+                        navController = navController,
+                        onBackClick = { navController.popBackStack() }
+                    )
+                }
+            }
 
             composable(
                 route = Screen.UserInfoScreen.route,

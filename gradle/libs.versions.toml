@@ -19,6 +19,8 @@ mapsCompose = "6.1.2"
 playServicesMaps = "18.1.0"
 playServicesLocation = "21.3.0"
 firebaseDatabaseKtx = "21.0.0"
+firebaseStorageKtx = "21.0.0"
+uiTextGoogleFonts = "1.7.2"
 
 
 [libraries]
@@ -49,6 +51,8 @@ maps-compose = { group = "com.google.maps.android", name = "maps-compose", versi
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 firebase-database-ktx = { group = "com.google.firebase", name = "firebase-database-ktx", version.ref = "firebaseDatabaseKtx" }
+firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx", version.ref = "firebaseStorageKtx" }
+androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

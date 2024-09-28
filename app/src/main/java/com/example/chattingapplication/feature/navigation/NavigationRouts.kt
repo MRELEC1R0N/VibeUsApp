@@ -8,6 +8,22 @@ sealed class NavigationRouts(val route: String) {
     object MapScreen : NavigationRouts("map")
     object ChatScreen : NavigationRouts("users")
     object AboutMeScreen : NavigationRouts("aboutme")
+    object FriendRequestsScreen : NavigationRouts("friend_requests") // Add this line for Friend Requests
+    object RequestUserProfile : NavigationRouts("request_user_profile/{userId}") {
+        fun createRoute(userId: String) = "request_user_profile/$userId"
+    }
+
+    object UserProfile : NavigationRouts("user_profile/{userId}/{requestId}") {
+        fun passUserAndRequest(userId: String, requestId: String): String {
+            return "user_profile/$userId/$requestId"
+        }
+    }
+
+    object PostUserScreen: NavigationRouts("post_user_profile/{userId}") {
+        fun passUserId(userId: String): String {
+            return "post_user_profile/$userId"
+        }
+    }
 
 
     // User Info Screen

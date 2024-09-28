@@ -68,6 +68,8 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.play.services.location)
     implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.storage.ktx)
+    implementation(libs.androidx.ui.text.google.fonts)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -75,6 +77,8 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation ("com.google.firebase:firebase-auth-ktx")
 
     implementation(platform("com.google.firebase:firebase-bom:33.3.0"))
     implementation("com.google.firebase:firebase-analytics")
@@ -95,5 +99,8 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata:1.7.1")
 
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
+
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
+
 
 }
